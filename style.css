@@ -229,6 +229,12 @@ cursor: pointer;
     border-radius: 10px;
 
   }
+  .carditem button a{
+   text-decoration: none;
+   color: black;
+   background-color: #171c2800;
+
+  }
   .carditem button:hover{
     text-align: center;
     padding: 7px 25px;
