@@ -303,6 +303,8 @@ cursor: pointer;
   flex-wrap: wrap;
   gap: 40px;
   margin-bottom: 20px;
+  width: 85%;
+  margin: 0px auto;
 }
 .icon img{
   width: 60px;
@@ -371,7 +373,7 @@ cursor: pointer;
 
 }
 .pb2{
-  width: 80%;
+  width: 60%;
   background-color: rgb(170, 165, 255);
   height: 20px;
   border-radius: 30px;
@@ -1504,3 +1506,41 @@ transition: 2s;
     width: 100%;
   } 
   }
+  .card35 {
+  padding: 50px 20px;
+  background-color: #f8f9fa00;
+  text-align: center;
+}
+
+.card35 h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.experience-item {
+  max-width: 800px;
+  margin: auto;
+  text-align: left;
+  background: #ffffff00;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.experience-item h2 {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.experience-item h3 {
+  font-size: 1rem;
+  color: #ffffff88;
+  margin-bottom: 10px;
+}
+
+.experience-item p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ffffff7c;
+}
