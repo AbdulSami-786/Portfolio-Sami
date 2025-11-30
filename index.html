@@ -3,268 +3,1950 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./style.css">
+    <title>Abdul Sami | Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #4A44C6;
+            --dark: #171c28;
+            --light: #f8f9fa;
+            --accent: #FF6584;
+            --success: #4CAF50;
+            --text: #e9ecef;
+            --text-muted: #adb5bd;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            line-height: 1.6;
+        }
+        
+        /* Particle Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* Loading Animation */
+        .load {
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            flex-direction: column;
+            gap: 50px;
+        }
+        
+        .loadert {
+            font-family: "Dancing Script", serif;
+            font-size: 2.5rem;
+            color: white;
+            background: transparent;
+            animation: textGlow 2s infinite alternate;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px var(--primary); }
+            100% { text-shadow: 0 0 20px var(--primary), 0 0 30px var(--secondary); }
+        }
+        
+        .wrapper {
+            width: 200px;
+            height: 60px;
+            position: relative;
+            z-index: 1;
+            background: transparent;
+        }
+        
+        .circle {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: var(--primary);
+            left: 15%;
+            transform-origin: 50%;
+            animation: circleBounce .5s alternate infinite ease;
+        }
+        
+        @keyframes circleBounce {
+            0% {
+                top: 60px;
+                height: 5px;
+                border-radius: 50px 50px 25px 25px;
+                transform: scaleX(1.7);
+            }
+            40% {
+                height: 20px;
+                border-radius: 50%;
+                transform: scaleX(1);
+            }
+            100% {
+                top: 0%;
+            }
+        }
+        
+        .circle:nth-child(2) {
+            left: 45%;
+            animation-delay: .2s;
+        }
+        
+        .circle:nth-child(3) {
+            left: auto;
+            right: 15%;
+            animation-delay: .3s;
+        }
+        
+        .shadow {
+            width: 20px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: rgba(0,0,0,0.9);
+            position: absolute;
+            top: 62px;
+            transform-origin: 50%;
+            z-index: -1;
+            left: 15%;
+            filter: blur(1px);
+            animation: shadowMove .5s alternate infinite ease;
+        }
+        
+        @keyframes shadowMove {
+            0% {
+                transform: scaleX(1.5);
+            }
+            40% {
+                transform: scaleX(1);
+                opacity: .7;
+            }
+            100% {
+                transform: scaleX(.2);
+                opacity: .4;
+            }
+        }
+        
+        .shadow:nth-child(4) {
+            left: 45%;
+            animation-delay: .2s
+        }
+        
+        .shadow:nth-child(5) {
+            left: auto;
+            right: 15%;
+            animation-delay: .3s;
+        }
+        
+        /* Main Content */
+        .body {
+            display: none;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+        
+        /* Navigation */
+        .navbarp {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px auto;
+            padding: 15px 30px;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            background: rgba(23, 28, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideDown 1s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo {
+            font-family: "Dancing Script", serif;
+            font-size: 1.7rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: -100%;
+            background: var(--gradient);
+            transition: left 0.5s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            color: var(--primary);
+        }
+        
+        .logo:hover::before {
+            left: 0;
+        }
+        
+        .item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+        
+        .item a {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            text-decoration: none;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.4s ease;
+            font-weight: 500;
+        }
+        
+        .item a:hover {
+            color: var(--primary);
+        }
+        
+        .item a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient);
+            transition: width 0.4s ease;
+        }
+        
+        .item a:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 101;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: rgba(23, 28, 40, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            transition: right 0.5s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--primary);
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .card1 {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 100px auto;
+            gap: 40px;
+            min-height: 80vh;
+        }
+        
+        .carditem {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            width: 50%;
+            gap: 25px;
+            animation: slideInLeft 1.2s ease;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .carditem h1 {
+            font-family: "Poppins", serif;
+            font-weight: 800;
+            color: white;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            line-height: 1.2;
+            position: relative;
+        }
+        
+        .carditem h1 span {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            animation: wave 2s infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .carditem h2 {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--text-muted);
+            line-height: 1.6;
+            animation: fadeIn 2s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .carditem button {
+            padding: 15px 35px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            background: var(--gradient);
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .carditem button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            z-index: -1;
+            transition: opacity 0.4s ease;
+            opacity: 0;
+        }
+        
+        .carditem button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.6);
+        }
+        
+        .carditem button:hover::before {
+            opacity: 1;
+        }
+        
+        .carditem button:active {
+            transform: translateY(2px);
+        }
+        
+        .carditem button a {
+            text-decoration: none;
+            color: white;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .itemimg {
+            width: 45%;
+            border-radius: 20px;
+            overflow: hidden;
+            animation: slideInRight 1.2s ease, float 6s ease-in-out infinite;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .itemimg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(108, 99, 255, 0.2), rgba(255, 101, 132, 0.2));
+            z-index: 1;
+            border-radius: 20px;
+        }
+        
+        .itemimg img {
+            width: 100%;
+            display: block;
+            border-radius: 20px;
+            transition: all 0.8s ease;
+        }
+        
+        .itemimg:hover img {
+            transform: scale(1.1) rotate(2deg);
+        }
+        
+        /* Skills Section */
+        .card2 {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 40px;
+            margin: 150px auto;
+            text-align: center;
+        }
+        
+        .card2 h1 {
+            font-family: "Poppins", serif;
+            font-weight: 700;
+            color: white;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            position: relative;
+            display: inline-block;
+            animation: bounceIn 1s ease;
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .card2 h1::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 20%;
+            border-radius: 2px;
+            animation: expandWidth 1.5s ease;
+        }
+        
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 60%; }
+        }
+        
+        .card2 h2 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-muted);
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            max-width: 700px;
+            line-height: 1.6;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid var(--primary);
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--primary); }
+        }
+        
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .icon-item {
+            width: 90px;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--card-bg);
+            border-radius: 20px;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: iconFloat 3s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.1s);
+        }
+        
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .icon-item::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .icon-item:hover {
+            transform: translateY(-15px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(108, 99, 255, 0.3);
+        }
+        
+        .icon-item:hover::before {
+            opacity: 0.1;
+        }
+        
+        .icon-item img {
+            width: 45px;
+            z-index: 1;
+            transition: all 0.5s ease;
+            filter: grayscale(30%);
+        }
+        
+        .icon-item:hover img {
+            transform: scale(1.2) rotate(10deg);
+            filter: grayscale(0%);
+        }
+        
+        .card2 h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-muted);
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            line-height: 1.8;
+            max-width: 800px;
+            animation: fadeInUp 1.5s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Progress Section */
+        .card3 {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 150px auto;
+        }
+        
+        .card3 h1 {
+            width: 100%;
+            text-align: center;
+            font-family: "Poppins", serif;
+            font-weight: 700;
+            color: white;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 20px;
+            animation: flipInX 1s ease;
+        }
+        
+        @keyframes flipInX {
+            from {
+                transform: perspective(400px) rotateX(90deg);
+                opacity: 0;
+            }
+            to {
+                transform: perspective(400px) rotateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .skill-item {
+            width: 100%;
+            margin-bottom: 40px;
+            animation: fadeInLeft 1s ease;
+            animation-delay: calc(var(--i) * 0.2s);
+            animation-fill-mode: both;
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .skill-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: var(--text);
+        }
+        
+        .skill-header span {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            color: var(--primary);
+            font-weight: 600;
+            animation: countUp 2s ease;
+        }
+        
+        @keyframes countUp {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .progress {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 10px;
+            width: 0;
+            transition: width 2s cubic-bezier(0.22, 0.61, 0.36, 1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Projects Section */
+        .card4h {
+            width: 90%;
+            max-width: 1200px;
+            text-align: center;
+            font-family: "Poppins", serif;
+            font-weight: 700;
+            color: white;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin: 150px auto 50px;
+            animation: zoomIn 1s ease;
+        }
+        
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .project-categories {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            padding: 12px 25px;
+            background: var(--card-bg);
+            border: none;
+            border-radius: 50px;
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+        }
+        
+        .category-btn:hover::before, .category-btn.active::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .card4 {
+            width: 95%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 0 auto 150px;
+        }
+        
+        .proj1 {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            position: relative;
+            height: 320px;
+            animation: fadeInUp 1s ease;
+            animation-fill-mode: both;
+            animation-delay: calc(var(--i) * 0.1s);
+        }
+        
+        .proj1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+        
+        .proj1:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .proj1:hover::before {
+            opacity: 0.1;
+        }
+        
+        .proj1 a {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 25px;
+            text-decoration: none;
+            height: 100%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .proj1 h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: white;
+            margin-bottom: 10px;
+            transition: all 0.4s ease;
+        }
+        
+        .proj1:hover h1 {
+            color: var(--primary);
+            transform: translateX(10px);
+        }
+        
+        .proj1 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            line-height: 1.5;
+            transition: all 0.4s ease;
+        }
+        
+        .proj1:hover h2 {
+            color: var(--text);
+        }
+        
+        .proj1 h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            color: var(--primary);
+            font-weight: 500;
+            transition: all 0.4s ease;
+        }
+        
+        .proj1:hover h3 {
+            transform: translateX(5px);
+        }
+        
+        /* Experience Section */
+        .card35 {
+            width: 90%;
+            max-width: 1200px;
+            margin: 150px auto;
+        }
+        
+        .card35 h1 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            text-align: center;
+            margin-bottom: 50px;
+            font-family: "Poppins", serif;
+            font-weight: 700;
+            color: white;
+            animation: bounce 1s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .experience-item {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInRight 1s ease;
+            animation-fill-mode: both;
+            animation-delay: calc(var(--i) * 0.2s);
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.5s ease;
+        }
+        
+        .experience-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .experience-item:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .experience-item h2 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: white;
+            margin-bottom: 10px;
+            transition: all 0.4s ease;
+        }
+        
+        .experience-item:hover h2 {
+            color: var(--primary);
+            transform: translateX(10px);
+        }
+        
+        .experience-item h3 {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            color: var(--primary);
+            margin-bottom: 15px;
+            transition: all 0.4s ease;
+        }
+        
+        .experience-item:hover h3 {
+            transform: translateX(10px);
+        }
+        
+        .experience-item p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            line-height: 1.6;
+            color: var(--text-muted);
+            transition: all 0.4s ease;
+        }
+        
+        .experience-item:hover p {
+            transform: translateX(5px);
+        }
+        
+        /* Footer */
+        .footer {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            margin: 150px auto 50px;
+            padding: 50px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 2s ease;
+        }
+        
+        .footitem {
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .footitem h1 {
+            font-family: "Poppins", serif;
+            font-weight: 700;
+            color: white;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            animation: pulse 2s infinite;
+        }
+        
+        .footitem h2 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-muted);
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            line-height: 1.6;
+        }
+        
+        .footitem h3 {
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.4s ease;
+        }
+        
+        .footitem h3:hover {
+            color: var(--primary);
+            transform: translateX(10px);
+        }
+        
+        .footitem h3 i {
+            color: var(--primary);
+        }
+        
+        .footitem h4 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--success);
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            padding: 8px 20px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 50px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--card-bg);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.5s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px) rotate(10deg);
+        }
+        
+        .social-icon:hover::before {
+            transform: scale(1);
+        }
+        
+        .social-icon i {
+            font-size: 1.2rem;
+            color: white;
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+        
+        .social-icon:hover i {
+            transform: scale(1.2);
+        }
+        
+        .footlogo {
+            width: 35%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .footlogo img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: all 0.5s ease;
+        }
+        
+        .footlogo:hover img {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(108, 99, 255, 0.4);
+        }
+        
+        /* Policy */
+        .policy {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px 0;
+            animation: fadeIn 2s ease;
+        }
+        
+        .policy h1 {
+            font-family: "Poppins", serif;
+            font-weight: 500;
+            color: var(--text);
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+        }
+        
+        .policy h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            color: var(--text-muted);
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        }
+        
+        /* Animations */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(108, 99, 255, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(108, 99, 255, 0);
+            }
+        }
+        
+        /* Floating elements */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% {
+                transform: translate(0, 0px);
+            }
+            50% {
+                transform: translate(0, 20px);
+            }
+            100% {
+                transform: translate(0, -0px);
+            }
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Hire Me Button */
+        .hire-me {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(108, 99, 255, 0.5);
+            transition: all 0.5s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: bounce 2s infinite, pulse 3s infinite;
+        }
+        
+        .hire-me:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.7);
+        }
+        
+        .hire-me i {
+            font-size: 1.2rem;
+            transition: all 0.5s ease;
+        }
+        
+        .hire-me:hover i {
+            transform: rotate(30deg);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .card1 {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .carditem {
+                width: 80%;
+                align-items: center;
+            }
+            
+            .itemimg {
+                width: 60%;
+            }
+            
+            .footer {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footitem {
+                width: 80%;
+                align-items: center;
+            }
+            
+            .footlogo {
+                width: 50%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbarp {
+                padding: 15px 20px;
+            }
+            
+            .item {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .carditem h1 {
+                font-size: 2.5rem;
+            }
+            
+            .card4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .icon-item {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .icon-item img {
+                width: 35px;
+            }
+            
+            .project-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 200px;
+            }
+            
+            .card2 h2 {
+                white-space: normal;
+                border-right: none;
+                animation: none;
+                overflow: visible;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .navbarp {
+                width: 95%;
+                padding: 12px 15px;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+            }
+            
+            .carditem {
+                width: 95%;
+            }
+            
+            .carditem h1 {
+                font-size: 2rem;
+            }
+            
+            .itemimg {
+                width: 80%;
+            }
+            
+            .card4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .footitem {
+                width: 95%;
+            }
+            
+            .footlogo {
+                width: 70%;
+            }
+            
+            .card2 h1, .card3 h1, .card4h, .card35 h1 {
+                font-size: 2.2rem;
+            }
+            
+            .icon {
+                gap: 15px;
+            }
+            
+            .icon-item {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .icon-item img {
+                width: 30px;
+            }
+            
+            .proj1 {
+                height: 280px;
+            }
+            
+            .hire-me {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .carditem h1 {
+                font-size: 1.8rem;
+            }
+            
+            .carditem button {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .icon-item {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .icon-item img {
+                width: 25px;
+            }
+            
+            .proj1 {
+                height: 260px;
+            }
+            
+            .category-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="load">
-    <div class="wrapper">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="shadow"></div> 
-        <div class="shadow"></div>
-        <div class="shadow"></div>
-    </div>
-    <div class="loadert"><' ABDUL SAMI '/></div>
-</div>    
-<div class="body">
-
-
-<!------------------------ nav bar --------------------->
-<div class="navbarp">
-    <div class="logo"><' ABDUL SAMI '/></div>
-    <div class="item">
-        <a href="#home">Home</a>
-        <a href="#about" >About</a>
-        <a href="#progress" >Progress</a>
-        <a href="#project">Projct</a>
-        <a href="#contact">Contact</a></div>
-</div>
-<hr>
-<!-- card 1  -->
-<div class="card1" id="home">
-    <div class="carditem">
-        <h1>HI, I'M ABDUL SAMI <img src="../hi.gif" alt=""></h1>
-        <h2>A passionate Frontend Software Developer 🚀 having an experience of building Web and Mobile applications with JavaScript / Typescript / HTML / CSS and some other cool libraries and frameworks.</h2>
-        <button><a href="./Document_1757410480289.pdf" download>Download CV</a></button>
-    </div>
-
-    <div class="itemimg">
-        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3pzcGRkdXJ4eGpyamVscnY3OTM0d2o3N2tvMjNwNHNmdmltdjk1ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/m6pvmOSXuTEPaKFWBz/giphy.gif" alt="">
-    </div>
-</div>
-<hr>
- 
-<!-- card 2 -->
-<div  class="card2" id="about">
-    <h1>What I do </h1>
-    <h2>CRAZY FRONTEND DEVELOPER WHO WANTS TO EXPLORE EVERY WEB TECH</h2>
-    <div class="icon">
-        <img src="   https://cdn-icons-png.flaticon.com/512/1051/1051277.png "  alt="" loading="lazy" title="" class="img-small">
-        <img src="   https://cdn-icons-png.flaticon.com/512/732/732190.png "  alt="" loading="lazy" title="" class="img-small">
-        <img src="https://w7.pngwing.com/pngs/293/485/png-transparent-tailwind-css-hd-logo.png" alt="" loading="lazy" title="" class="img-small">
-        <img src="https://images.seeklogo.com/logo-png/55/2/daisyui-logo-png_seeklogo-554509.png" alt="" loading="lazy" title="" class="img-small">
-        <img src="   https://cdn-icons-png.flaticon.com/512/5968/5968672.png " alt="" loading="lazy" title="" class="img-small">
-        <img src="   https://cdn-icons-png.flaticon.com/512/3291/3291695.png " alt="" loading="lazy" title="" class="img-small">
-        <img src="   https://cdn-icons-png.flaticon.com/512/5968/5968292.png " alt="" loading="lazy" title="" class="img-small">
-        <img src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-1024.png" alt="" loading="lazy" title="" class="img-small">
-        <img src="   https://cdn-icons-png.flaticon.com/512/5968/5968381.png " alt="" loading="lazy" title="" class="img-small">
-        <img src="   https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs0l-TuBngMICNr0sigBZGGvpaIGKOQN0umQ&s " alt="" loading="lazy" title="" class="img-small">
-        <img src="  https://w7.pngwing.com/pngs/566/160/png-transparent-golang-hd-logo.png " alt="" loading="lazy" title="" class="img-small">
-        <img src=" https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrLIsoAHea-BOhRzeFAqp8P9OChYR2Fch6mQ&s" alt="" loading="lazy" title="" class="img-small">
-        <img src=" https://avatars.githubusercontent.com/u/73504361?s=280&v=4" alt="" loading="lazy" title="" class="img-small">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png" alt="" loading="lazy" title="" class="img-small">
-        <img src="https://blog.langchain.dev/content/images/2023/09/LangChain_Logo-1.png" alt="" loading="lazy" title="" class="img-small">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png" alt="" loading="lazy" title="" class="img-small">
-      
-    </div>
-    <h3> ⚡Develop highly interactive Front end / Backend for your web and mobile applications <br> <br>
-        ⚡ Progressive Web Applications ( Interface and Backend ) <br> <br>
-        ⚡ Make a friendly interface and debugging on backend </h3>
-</div>
-<hr>
-
-<!-- card 3 -->
-
-<div class="card3" id="progress">
-<h1>Proficiency</h1>
-
-<h2>Frontend/Design</h2>
-<div class="pp1"><div class="pb1"></div></div>
-<h2>Backend</h2>
-<div class="pp2"><div class="pb2"></div></div>
-<h2>DEBUGGING</h2>
-<div class="pp3"><div class="pb3"></div></div>
-</div>
-
-<hr>
-
-<!-- .card 4 -->
- <div class="card4h" id="project">PROJECT</div>
- <div class="card4" >
-    <div class="proj1">
-        <a href="https://assistant.ebit.team/" target="_blank">
-
-            <h1>Ebit Assistant</h1>
-            <h2>Its made for Client in WebJin
-            </h2>
-        </a>
-    </a>
-    </div>
-    <div class="proj1">
-        <a href="https://assistant.virtualassistants.ai/" target="_blank">
-
-            <h1>Vartiual Assistant</h1>
-            <h2>Its made for Client in WebJin</h2>
-        </a>
-    </a>
-    </div>
-    <div class="proj1">
-        <a href="http://51.120.18.175:3002/" target="_blank">
-
-            <h1>Flexit Agent</h1>
-          <h2>Its made for Client in WebJin</h2>
-            <h3>USING : Scraper And Chat bot Agent</h3>
-        </a>
-    </a>
-    </div>
-    <div class="proj1">
-        <a href="https://classy-kashata-be7737.netlify.app/" target="_blank">
-
-            <h1>TEMU CLONE</h1>
-            <h2>Its made for only practice</h2>
-            <h3>USING : Html, CSS, Bootrap, Javascript, Web3form</h3>
-        </a>
-    </a>
-    </div>
-<div class="proj1">
-            <a href="https://resilient-malasada-12de63.netlify.app/" target="_blank">
-        <h1>Salt & Paper Clone</h1>
-        <h2>Its made for only practice</h2>
-        <h3>USING : Html, CSS, Bootrap</h3>
-    </a>
-    </div>
-    <div class="proj1">
-        <a href="https://glittering-biscuit-27b915.netlify.app/" target="_blank">
-        <h1>Weather App</h1>
-        <h2>Its made for only practice</h2>
-        <h3>USING : Html, CSS, Bootrap, Javascript, Js api</h3>
-    </a>
-    </div>
-<div class="proj1">
-        <a href="https://mellifluous-cuchufli-74da82.netlify.app/" target="_blank">
-        <h1>Git User</h1>
-        <h2>Its made for only practice</h2>
-        <h3>USING : Html, CSS, Bootrap, Javascript, Js api</h3>
-    </a>
-    </div>
-<div class="proj1">
-        <a href="https://fluffy-florentine-af53fd.netlify.app/" target="_blank">
-        <h1>TODO APP</h1>
-        <h2>Its made for only practice</h2>
-        <h3>USING : Html, CSS, Javascript</h3>
-    </a>
-    </div>
-    <div class="proj1">
-        <a href="https://spectacular-halva-c163b4.netlify.app/" target="_blank">
-        <h1>Time Watch</h1>
-        <h2>Its made for only practice</h2>
-        <h3>USING : Html, CSS, Javascript</h3>
-    </a>
-    </div>
-    <div class="proj1">
-        <a href="https://newclone-eight.vercel.app/" target="_blank">
-        <h1>Olx App</h1>
-        <h2>Its made for only practice</h2>
-        <h3>USING : Html, CSS, Tailwind, Daisy Ui, React</h3>
-    </a>
-    </div>
-    <div class="proj1">
-        <a href="https://facebook-clone-kf3h.vercel.app/" target="_blank">
-        <h1>ASW Bird Clone</h1>
-        <h2>Its made for only practice</h2>
-        <h3>USING : Html, CSS, Tailwind, Daisy Ui, React</h3>
-    </a>
-    </div>
-    <div class="proj1">
-        <a href="https://nextjs-gamma-virid-61.vercel.app/" target="_blank">
-        <h1>Product App</h1>
-        <h2>Its made for only practice</h2>
-        <h3>USING : Html, CSS, Tailwind, Daisy Ui, React</h3>
-    </a>
-    </div>
-    <div class="proj1">
-        <a target="_blank">
-        <h1>Client Work</h1>
-        <h2>Work For Client in Webjin</h2>
-        <h3>Multi agent system</h3>
-    </a>
-    </div>
-    <div class="proj1">
-        <a target="_blank">
-        <h1>Client Work</h1>
-        <h2>Work For Client in Webjin</h2>
-        <h3>Ai Agent</h3>
-    </a>
-    </div>
-    <div class="proj1">
-        <a target="_blank">
-        <h1>Client Work</h1>
-        <h2>Work For Client in Webjin</h2>
-        <h3>Scraper Agnet</h3>
-    </a>
-    </div>
-    <div class="proj1">
-        <a target="_blank">
-        <h1>Client Work</h1>
-        <h2>Work For Client in Webjin</h2>
-        <h3>Goland BAckend Debugging</h3>
-    </a>
-    </div>
- </div>
-<hr>
-<!-- Experince  -->
- <!-- card 3.5: Experience -->
-<div class="card35" id="experience">
-  <h1>Experience</h1>
-  <div class="experience-item">
-    <h2>Full Stack Junior</h2>
-    <h3>WebJin sister compnay of ( Sirp ) | May 2025 – Continue</h3>
-    <p>
-      Worked as a Full stack Developer  work on multiple client projects, improving UI components and fixing bugs.<br>
-      ● Built responsive web UIs using React, Next js, Tailwind CSS, and DaisyUI<br>
-      ● Built Backend web using Golang , Python , Node js<br>
-      ● Integrated/Make APIs and optimized performance across devices<br>
-      ● Collaborated using GitHub and agile methodologies <br>
-      ● Built Database of web on using MySQL db  and vector db <br>
-      ● Built Ai Assistant on python and langchain
-    </p>
-  </div>
-</div>
- <hr>
-<!-- fotter  -->
- <div class="footer" id="contact">
-    <div class="footitem">
-        <h1>Reach Out to me!</h1>
-        <h2>Discuss a project or just want to say hi? My Inbox is open for all.</h2>
-        <h3>abdulsamimyousuf0@gmail.com</h3>
-        <h4>Open for opportunities: NO</h4>
-        <div class="icons">
-            <img src="   https://cdn-icons-png.flaticon.com/512/3291/3291695.png " alt="" title="" class="img-small">
-            <img src="./mail.jpg" alt="" title="" class="img-small">
-            <img src="./insta.avif" alt="" title="" class="img-small">
-            <img src="./face.jpg" alt="" title="" class="img-small">
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Loading Screen -->
+    <div class="load">
+        <div class="wrapper">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="shadow"></div> 
+            <div class="shadow"></div>
+            <div class="shadow"></div>
         </div>
+        <div class="loadert">Abdul Sami | Freelance Developer</div>
     </div>
-    <div class="footlogo">
-        <img src="./myy.jpg" alt="">
+    
+    <!-- Main Content -->
+    <div class="body">
+        <!-- Navigation -->
+        <div class="navbarp">
+            <div class="logo">Abdul Sami</div>
+            <div class="item">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#progress">Skills</a>
+                <a href="#project">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <button class="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#progress">Skills</a>
+            <a href="#project">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </div>
+        
+        <!-- Hero Section -->
+        <div class="card1" id="home">
+            <div class="carditem">
+                <h1>Hi, I'm <span>Abdul Sami</span> <img src="../hi.gif" alt="Hi" width="15%"></h1>
+                <h2>A passionate Full-Stack Developer 🚀 with expertise in building Web and Mobile applications using modern technologies. Available for freelance projects worldwide.</h2>
+                <button class="pulse"><a href="./Document_1757410480289.pdf" download><i class="fas fa-download"></i> Download CV</a></button>
+            </div>
+            <div class="itemimg floating">
+                <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3pzcGRkdXJ4eGpyamVscnY3OTM0d2o3N2tvMjNwNHNmdmltdjk1ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/m6pvmOSXuTEPaKFWBz/giphy.gif" alt="Developer Illustration">
+            </div>
+        </div>
+        
+        <!-- Skills Section -->
+        <div class="card2 fade-in" id="about">
+            <h1>What I Do</h1>
+            <h2>FULL-STACK DEVELOPER SPECIALIZING IN MODERN WEB TECHNOLOGIES</h2>
+            <div class="icon">
+                <div class="icon-item" style="--i:0"><img src="https://cdn-icons-png.flaticon.com/512/1051/1051277.png" alt="HTML5"></div>
+                <div class="icon-item" style="--i:1"><img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS3"></div>
+                <div class="icon-item" style="--i:2"><img src="https://w7.pngwing.com/pngs/293/485/png-transparent-tailwind-css-hd-logo.png" alt="Tailwind CSS"></div>
+                <div class="icon-item" style="--i:3"><img src="https://images.seeklogo.com/logo-png/55/2/daisyui-logo-png_seeklogo-554509.png" alt="DaisyUI"></div>
+                <div class="icon-item" style="--i:4"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968672.png" alt="Bootstrap"></div>
+                <div class="icon-item" style="--i:5"><img src="https://cdn-icons-png.flaticon.com/512/3291/3291695.png" alt="GitHub"></div>
+                <div class="icon-item" style="--i:6"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript"></div>
+                <div class="icon-item" style="--i:7"><img src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-1024.png" alt="React"></div>
+                <div class="icon-item" style="--i:8"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968381.png" alt="TypeScript"></div>
+                <div class="icon-item" style="--i:9"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs0l-TuBngMICNr0sigBZGGvpaIGKOQN0umQ&s" alt="Next.js"></div>
+                <div class="icon-item" style="--i:10"><img src="https://w7.pngwing.com/pngs/566/160/png-transparent-golang-hd-logo.png" alt="Golang"></div>
+                <div class="icon-item" style="--i:11"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrLIsoAHea-BOhRzeFAqp8P9OChYR2Fch6mQ&s" alt="MongoDB"></div>
+                <div class="icon-item" style="--i:12"><img src="https://avatars.githubusercontent.com/u/73504361?s=280&v=4" alt="FastAPI"></div>
+                <div class="icon-item" style="--i:13"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png" alt="Python"></div>
+                <div class="icon-item" style="--i:14"><img src="https://blog.langchain.dev/content/images/2023/09/LangChain_Logo-1.png" alt="LangChain"></div>
+                <div class="icon-item" style="--i:15"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png" alt="Node.js"></div>
+            </div>
+            <h3>
+                ⚡ Develop highly interactive Frontend / Backend applications<br><br>
+                ⚡ Progressive Web Applications with modern UI/UX<br><br>
+                ⚡ Integration of third-party services and RESTful APIs<br><br>
+                ⚡ AI-powered applications and automation solutions
+            </h3>
+        </div>
+        
+        <!-- Skills Progress -->
+        <div class="card3 fade-in" id="progress">
+            <h1>Proficiency</h1>
+            
+            <div class="skill-item" style="--i:0">
+                <div class="skill-header">
+                    <h2>Frontend Development</h2>
+                    <span>90%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" data-width="90"></div>
+                </div>
+            </div>
+            
+            <div class="skill-item" style="--i:1">
+                <div class="skill-header">
+                    <h2>Backend Development</h2>
+                    <span>80%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" data-width="80"></div>
+                </div>
+            </div>
+            
+            <div class="skill-item" style="--i:2">
+                <div class="skill-header">
+                    <h2>UI/UX Design</h2>
+                    <span>85%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" data-width="85"></div>
+                </div>
+            </div>
+            
+            <div class="skill-item" style="--i:3">
+                <div class="skill-header">
+                    <h2>Database Management</h2>
+                    <span>75%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" data-width="75"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Projects Section -->
+        <div class="card4h fade-in" id="project">Projects</div>
+        
+        <!-- Project Categories -->
+        <div class="project-categories">
+            <button class="category-btn active" data-category="all">All Projects</button>
+            <button class="category-btn" data-category="blog">Blog & Documentation</button>
+            <button class="category-btn" data-category="ecommerce">E-Commerce</button>
+            <button class="category-btn" data-category="large">Large Scale</button>
+            <button class="category-btn" data-category="agents">AI Agents</button>
+        </div>
+        
+        <div class="card4">
+          <!-- Blog & Documentation Projects -->
+            <div class="proj1 fade-in" data-category="blog" style="--i:0">
+                <a href="https://blog-web-react-jgb4.vercel.app/" target="_blank">
+                    <h1>Tech Servicess Documentation Website</h1>
+                    <h2>A modern blogging platform with rich text editor, user authentication, and comment system</h2>
+                    <h3>TECH: React, Node.js</h3>
+                </a>
+            </div>
+            <div class="proj1 fade-in" data-category="blog" style="--i:0">
+                <a href="https://blog-web-react-r5zi.vercel.app/" target="_blank">
+                    <h1>Ocen Blog Theme</h1>
+                    <h2>A modern blogging platform with rich text editor, user authentication, and comment system</h2>
+                    <h3>TECH: React, Node.js</h3>
+                </a>
+            </div>
+            <div class="proj1 fade-in" data-category="blog" style="--i:0">
+                <a href="https://blog-web-react-jungle.vercel.app/" target="_blank">
+                    <h1>Jungle Blog Theme</h1>
+                    <h2>A modern blogging platform with rich text editor, user authentication, and comment system</h2>
+                    <h3>TECH: React, Node.js</h3>
+                </a>
+            </div>
+            
+            <div class="proj1 fade-in" data-category="blog" style="--i:1">
+                <a href="https://blog-web-sooty-one.vercel.app/" target="_blank">
+                    <h1>Blog Web For Practice</h1>
+                    <h2>A modern blogging platform with rich text editor, user authentication, and comment system </h2>
+                    <h3>TECH: Next.js, TypeScript, Swagger</h3>
+                </a>
+            </div>
+            
+            <!-- E-Commerce Projects -->
+            <div class="proj1 fade-in" data-category="ecommerce" style="--i:2">
+                <a href="https://classy-kashata-be7737.netlify.app/" target="_blank">
+                    <h1>TEMU E-Commerce Clone</h1>
+                    <h2>Full-featured e-commerce platform with product catalog, cart, and payment integration</h2>
+                    <h3>TECH: React, Node.js, Stripe, Firebase</h3>
+                </a>
+            </div>
+            
+            <div class="proj1 fade-in" data-category="ecommerce" style="--i:3">
+                <a href="https://example.com" target="_blank">
+                    <h1>Fashion Store</h1>
+                    <h2>Responsive fashion e-commerce with advanced filtering, wishlist, and recommendation engine</h2>
+                    <h3>TECH: Next.js, GraphQL, Tailwind CSS</h3>
+                </a>
+            </div>
+            
+            <!-- Large Scale Projects -->
+            <div class="proj1 fade-in" data-category="large" style="--i:4">
+                <a href="https://example.com" target="_blank">
+                    <h1>Enterprise CRM System</h1>
+                    <h2>Comprehensive customer relationship management with analytics, reporting, and automation</h2>
+                    <h3>TECH: React, Python, PostgreSQL, Redis</h3>
+                </a>
+            </div>
+            
+            <div class="proj1 fade-in" data-category="large" style="--i:5">
+                <a href="https://example.com" target="_blank">
+                    <h1>Learning Management System</h1>
+                    <h2>Scalable LMS with course creation, progress tracking, and certification system</h2>
+                    <h3>TECH: MERN Stack, AWS, Docker</h3>
+                </a>
+            </div>
+            
+            <!-- AI Agents Projects -->
+            <div class="proj1 fade-in" data-category="agents" style="--i:6">
+                <a href="https://assistant.ebit.team/" target="_blank">
+                    <h1>Ebit Assistant</h1>
+                    <h2>AI-powered virtual assistant with natural language processing and multi-platform integration</h2>
+                    <h3>TECH: Python, LangChain, React, FastAPI</h3>
+                </a>
+            </div>
+            
+            <div class="proj1 fade-in" data-category="agents" style="--i:7">
+                <a href="https://assistant.virtualassistants.ai/" target="_blank">
+                    <h1>Virtual Assistant Platform</h1>
+                    <h2>Multi-tenant AI assistant platform with custom training and analytics dashboard</h2>
+                    <h3>TECH: Next.js, TypeScript, OpenAI, Pinecone</h3>
+                </a>
+            </div>
+            
+            <div class="proj1 fade-in" data-category="agents" style="--i:8">
+                <a href="http://51.120.18.175:3002/" target="_blank">
+                    <h1>Flexit Agent</h1>
+                    <h2>Web scraping and data extraction agent with automation and reporting capabilities</h2>
+                    <h3>TECH: Python, Scrapy, React, Golang</h3>
+                </a>
+            </div>
+            
+            <div class="proj1 fade-in" data-category="agents" style="--i:9">
+                <a href="https://example.com" target="_blank">
+                    <h1>Customer Support Bot</h1>
+                    <h2>AI-powered customer service bot with sentiment analysis and escalation handling</h2>
+                    <h3>TECH: Node.js, Dialogflow, React, MongoDB</h3>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Experience Section -->
+        <div class="card35 fade-in" id="experience">
+            <h1>Experience</h1>
+            <div class="experience-item" style="--i:0">
+                <h2>Full Stack Developer</h2>
+                <h3>WebJin (Sister company of Sirp) | May 2024 – Present</h3>
+                <p>
+                    Working as a Full Stack Developer on multiple client projects, improving UI components and fixing bugs.<br>
+                    • Built responsive web UIs using React, Next.js, Tailwind CSS, and DaisyUI<br>
+                    • Developed backend services using Golang, Python, and Node.js<br>
+                    • Integrated RESTful APIs and optimized performance across devices<br>
+                    • Collaborated using GitHub and agile methodologies<br>
+                    • Designed and implemented database schemas using MySQL and vector databases<br>
+                    • Developed AI assistants using Python and LangChain
+                </p>
+            </div>
+            <div class="experience-item" style="--i:1">
+                <h2>Freelance Web Developer</h2>
+                <h3>Self-Employed | Jan 2023 – Present</h3>
+                <p>
+                    Working with various clients to build custom web solutions and applications.<br>
+                    • Developed responsive websites and web applications<br>
+                    • Implemented modern UI/UX designs<br>
+                    • Integrated third-party APIs and services<br>
+                    • Provided maintenance and support for existing projects<br>
+                    • Specialized in e-commerce, blog platforms, and AI-powered applications
+                </p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer fade-in" id="contact">
+            <div class="footitem">
+                <h1>Reach Out to Me!</h1>
+                <h2>Discuss a project or just want to say hi? My inbox is open for all.</h2>
+                <h3><i class="fas fa-envelope"></i> abdulsamimyousuf0@gmail.com</h3>
+                <h4>Open for opportunities: YES</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footlogo floating">
+                <img src="./myy.jpg" alt="Abdul Sami">
+            </div>
+        </div>
+        
+        <!-- Policy -->
+        <div class="policy">
+            <h1>Made with ❤️ by Abdul Sami</h1>
+            <h2>Available for freelance projects | Let's build something amazing together</h2>
+        </div>
+        
+        <!-- Hire Me Button -->
+        <button class="hire-me pulse">
+            <i class="fas fa-paper-plane"></i> Work with Me
+        </button>
     </div>
- </div>
- <hr>
 
-<!-- policy -->
- <div class="policy">
-    <h1>Made with ❤️ by Abdul Sami</h1>
-    <h2>Theme by developerFolio</h2>
- </div>
-
-
-
-
-</div>
-
-    <script src="./script.js"></script>
+    <!-- Particle.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.load').style.display = 'none';
+                document.querySelector('.body').style.display = 'block';
+                setTimeout(function() {
+                    document.querySelector('.body').style.opacity = '1';
+                }, 100);
+            }, 2500);
+        });
+        
+        // Initialize particles
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#6C63FF" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#6C63FF",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            }
+        });
+        
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const closeMenu = document.querySelector('.close-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+        });
+        
+        closeMenu.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+        });
+        
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -100px 0px"
+        };
+        
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+        
+        fadeElements.forEach(element => {
+            appearOnScroll.observe(element);
+        });
+        
+        // Animate progress bars
+        const progressBars = document.querySelectorAll('.progress');
+        
+        const progressOptions = {
+            threshold: 0.5
+        };
+        
+        const progressObserver = new IntersectionObserver(function(entries, progressObserver) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.getAttribute('data-width');
+                    entry.target.style.width = width + '%';
+                    progressObserver.unobserve(entry.target);
+                }
+            });
+        }, progressOptions);
+        
+        progressBars.forEach(bar => {
+            progressObserver.observe(bar);
+        });
+        
+        // Hire me button click
+        document.querySelector('.hire-me').addEventListener('click', function() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbarp');
+            if (window.scrollY > 100) {
+                navbar.style.backgroundColor = 'rgba(23, 28, 40, 0.95)';
+                navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(23, 28, 40, 0.8)';
+                navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+            }
+        });
+        
+        // Project category filtering
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const projects = document.querySelectorAll('.proj1');
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-category');
+                
+                projects.forEach(project => {
+                    if (category === 'all' || project.getAttribute('data-category') === category) {
+                        project.style.display = 'block';
+                        // Trigger reflow for animation
+                        project.style.animation = 'none';
+                        setTimeout(() => {
+                            project.style.animation = 'fadeInUp 0.5s ease';
+                        }, 10);
+                    } else {
+                        project.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Add animation delays to skill items
+        document.querySelectorAll('.skill-item').forEach((item, index) => {
+            item.style.setProperty('--i', index);
+        });
+        
+        // Add animation delays to experience items
+        document.querySelectorAll('.experience-item').forEach((item, index) => {
+            item.style.setProperty('--i', index);
+        });
+        
+        // Add animation delays to project items
+        document.querySelectorAll('.proj1').forEach((item, index) => {
+            item.style.setProperty('--i', index);
+        });
+        
+        // Add animation delays to icon items
+        document.querySelectorAll('.icon-item').forEach((item, index) => {
+            item.style.setProperty('--i', index);
+        });
+    </script>
 </body>
 </html>
